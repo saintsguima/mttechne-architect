@@ -1,0 +1,22 @@
+name: dotnet-ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: dotnet restore CashFlowChallenge.sln
+      - name: Build
+        run: dotnet build CashFlowChallenge.sln --configuration Release --no-restore
+      - name: Test with coverage
+        run: dotnet test CashFlowChallenge.sln --configuration Release --no-build --collect:"XPlat Code Coverage"

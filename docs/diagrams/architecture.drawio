@@ -1,0 +1,27 @@
+<mxfile host="app.diagrams.net" modified="2025-06-01T00:00:00.000Z" agent="ChatGPT" version="24.7.5">
+  <diagram id="cashflow-architecture" name="Arquitetura Cash Flow">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client" value="Cliente / Sistema Externo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="60" y="160" width="180" height="70" as="geometry" /></mxCell>
+        <mxCell id="lb" value="API Gateway / Load Balancer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1"><mxGeometry x="310" y="160" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="api" value="CashFlow.Api&#xa;REST + Swagger + HealthCheck" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="600" y="130" width="220" height="100" as="geometry" /></mxCell>
+        <mxCell id="app" value="CashFlow.Application&#xa;Use Cases + Ports" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="600" y="290" width="220" height="90" as="geometry" /></mxCell>
+        <mxCell id="domain" value="CashFlow.Domain&#xa;Entidades + Regras" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="600" y="440" width="220" height="90" as="geometry" /></mxCell>
+        <mxCell id="db" value="SQL Server&#xa;CashEntry / DailyBalance / OutboxMessage" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1"><mxGeometry x="960" y="290" width="250" height="120" as="geometry" /></mxCell>
+        <mxCell id="worker" value="Outbox Consolidation Worker&#xa;Processa eventos pendentes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="960" y="470" width="250" height="90" as="geometry" /></mxCell>
+        <mxCell id="obs" value="Observabilidade&#xa;Logs + Métricas + Alertas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;" vertex="1" parent="1"><mxGeometry x="1270" y="140" width="220" height="90" as="geometry" /></mxCell>
+        <mxCell id="cache" value="Evolução futura: Cache Redis&#xa;para leitura do consolidado" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffffff;strokeColor=#999999;" vertex="1" parent="1"><mxGeometry x="1270" y="310" width="230" height="80" as="geometry" /></mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="client" target="lb" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="lb" target="api" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="api" target="app" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="app" target="domain" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="app" target="db" style="endArrow=block;html=1;startArrow=none;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="worker" target="db" style="endArrow=block;html=1;startArrow=block;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="api" target="obs" style="endArrow=block;html=1;dashed=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="api" target="cache" style="endArrow=block;html=1;dashed=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
